@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { CountdownContext } from "../context/CountdownContext";
 
 import "./Home.css";
 
@@ -7,6 +10,8 @@ const Home = () => {
   const [date, setDate] = useState();
   const [image, setImage] = useState();
   const [color, setColor] = useState();
+  const { setEvent } = useContext(CountdownContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +22,9 @@ const Home = () => {
       image,
       color,
     };
+
+    setEvent(eventObject);
+    navigate("/countdown");
   };
 
   return (
